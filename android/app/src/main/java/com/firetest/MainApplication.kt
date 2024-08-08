@@ -1,4 +1,4 @@
-package com.firetest
+package com.app.firetest
 
 import android.app.Application
 import com.facebook.react.PackageList

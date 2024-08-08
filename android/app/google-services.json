@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "29109327480",
+    "project_id": "cnraildemo",
+    "storage_bucket": "cnraildemo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:29109327480:android:f1bd78bd7fddf4cdccff8d",
+        "android_client_info": {
+          "package_name": "com.app.firetest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHaPxTPwt_X08tEA7C5cdmvd_ZXB766vw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

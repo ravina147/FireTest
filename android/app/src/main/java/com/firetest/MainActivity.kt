@@ -1,4 +1,4 @@
-package com.firetest
+package com.app.firetest
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
