@@ -1,0 +1,12 @@
+{
+  "projects": {
+    "default": "cnraildemo"
+  },
+  "targets": {},
+  "etags": {
+    "cnraildemo": {
+      "extensionInstances": {}
+    }
+  },
+  "dataconnectEmulatorConfig": {}
+}
