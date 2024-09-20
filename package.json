@@ -10,7 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@react-native-firebase/app": "^20.3.0",
+    "@react-native-firebase/app": "^20.5.0",
     "@react-native-firebase/database": "^20.3.0",
     "@react-native-firebase/firestore": "^20.3.0",
     "@react-navigation/native": "^6.1.18",

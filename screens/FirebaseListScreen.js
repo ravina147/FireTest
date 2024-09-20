@@ -5,11 +5,7 @@ import firestore from '@react-native-firebase/firestore';
 import axios from 'axios'; // Import axios
 import firebase from '@react-native-firebase/app';
 import firebaseConfig from './firebaseConfig';
-
-
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-}
+import { db } from './firebaseConfig';
 
 const FirebaseListScreen = () => {
   const [dataList, setDataList] = useState([]);
@@ -24,13 +20,13 @@ const FirebaseListScreen = () => {
 
   const fetchData = async () => {
     try {
-      const snapshot = await firestore().collection('maintenanceOrders').get();
-      const list = snapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data(),
+      const snapshot = await db.collection('maintenanceOrders').get();
+      const firestoreData = snapshot.docs.map(doc => ({
+        id: doc.id, 
+        ...doc.data() 
       }));
-
-      setDataList(list);
+      setDataList(firestoreData); 
+      setLoading(false); 
     } catch (error) {
       console.error('Error fetching data: ', error);
     } finally {
@@ -41,18 +37,15 @@ const FirebaseListScreen = () => {
   // Call Cloud Function to fetch and store data in Firestore
 const fetchDataFromCloudFunction = async () => {
   try {
-    const response = await axios.get('https://us-central1-cnraildemo.cloudfunctions.net/fetchDataAndStoreInFirestore');
+    const response = await axios.get('https://us-central1-cnraildemo.cloudfunctions.net/getProdOrderConfirmation');
     console.log('Cloud Function Response:', response.data);
-    // Optionally, refresh the Firestore data after calling the cloud function
     fetchData();
   } catch (error) {
     console.error('Error calling Cloud Function:', error);
   }
 };
 
-  // Fetch data from Firestore collection when component mounts
-  useEffect(() => {
-
+useEffect(() => {
     initFirebase();
     fetchData();
   }, []);
@@ -64,7 +57,6 @@ const fetchDataFromCloudFunction = async () => {
         <Title>Maintenance Order: {item.MaintenanceOrder}</Title>
         <Paragraph>Order Confirmation: {item.MaintOrderConf}</Paragraph>
         <Paragraph>Actual Work Quantity: {item.ActualWorkQuantity}</Paragraph>
-        {/* Add more fields as necessary */}
       </Card.Content>
     </Card>
   );
@@ -76,7 +68,7 @@ const fetchDataFromCloudFunction = async () => {
   return (
     <View style={styles.container}>
       <Button mode="contained" onPress={fetchDataFromCloudFunction} style={styles.syncButton}>
-        Sync
+        Fetch & Refresh Data
       </Button>
       <FlatList
         data={dataList}
